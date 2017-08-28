@@ -797,9 +797,6 @@ $(function() {
 	}
 	setTimeout(updateDateMarkers, msUntilNextDay());
 
-	// Only start opening socket.io connection after all events have been registered
-	socket.open();
-
 	window.addEventListener("popstate", (e) => {
 		const {state} = e;
 		if (!state) {
@@ -813,4 +810,7 @@ $(function() {
 			});
 		}
 	});
+
+	// Only start opening socket.io connection after all events have been registered
+	socket.open();
 });

@@ -8,8 +8,10 @@ const socket = io({
 	transports: $(document.body).data("transports"),
 	path: path,
 	autoConnect: false,
-	reconnection: false
+	reconnection: !$(document.body).hasClass("public")
 });
+
+window.lounge_socket = socket; // TODO: Remove later, this is for debugging
 
 [
 	"connect_error",
@@ -34,7 +36,7 @@ const socket = io({
 			}
 		});
 		// Hides the "Send Message" button
-		$("#submit").remove();
+		$("#submit").hide();
 
 		console.error(data);
 	});
@@ -49,7 +51,7 @@ socket.on("connect", function() {
 });
 
 socket.on("authorized", function() {
-	$("#loading-page-message").text("Authorized, loading messages…");
+	$("#loading-page-message").text("Loading messages…");
 });
 
 module.exports = socket;

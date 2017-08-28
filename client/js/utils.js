@@ -4,7 +4,12 @@ const $ = require("jquery");
 const chat = $("#chat");
 const input = $("#input");
 
+var serverHash = -1;
+var lastMessageId = -1;
+
 module.exports = {
+	serverHash,
+	lastMessageId,
 	clear,
 	confirmExit,
 	forceFocus,
