@@ -109,16 +109,14 @@ module.exports = function(irc, network) {
 			let title = data.nick;
 
 			if (chan.type !== Chan.Type.QUERY) {
-				title += ` (${chan.name}) mentioned you`;
-			} else {
-				title += " sent you a message";
+				title += ` (${chan.name})`;
 			}
 
 			client.manager.webPush.push(client, {
 				type: "notification",
 				chanId: chan.id,
 				timestamp: data.time || Date.now(),
-				title: `The Lounge: ${title}`,
+				title: title,
 				body: Helper.cleanIrcMessage(data.message)
 			}, true);
 		}
